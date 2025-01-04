@@ -1,51 +1,56 @@
+
+
+
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // Import axios for API calls
 
 const HeroCarousel = () => {
-  const images = [
-    "https://images.unsplash.com/photo-1603651869635-f761ff37a4f4?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1610789413348-33d4cbecdf2a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNsb3RoaW5nJTIwbW9kZWxzJTIwbGFuZHNjYXBlfGVufDB8fDB8fHww",
-    "https://images.unsplash.com/photo-1634366230585-d9cf6056f1b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGNsb3RoaW5nJTIwbW9kZWxzJTIwbGFuZHNjYXBlfGVufDB8fDB8fHww",
-    "https://images.unsplash.com/photo-1663671230972-f8ee6f6c44f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
-
+  // State to store product data and the current image index for carousel
+  const [products, setProducts] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Fetch product data from the Fake Store API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Fetching data from the Fake Store API
+        const response = await axios.get("https://fakestoreapi.com/products");
+        setProducts(response.data); // Set products data to state
+      } catch (error) {
+        console.error("Error fetching products:", error); // Log any errors during API call
+      }
+    };
+
+    fetchProducts(); // Call fetch function
+  }, []); // Empty dependency array to run this effect only once when the component mounts
+
+  // Setting up the image switching effect for the carousel
   useEffect(() => {
     const interval = setInterval(() => {
+      // Move to the next image in the carousel, or loop back to the first image
       setCurrentIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        prevIndex === products.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Switch images every 3 seconds
+    }, 3000); // Change image every 3 seconds
 
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [images.length]);
+    return () => clearInterval(interval); // Cleanup the interval when component unmounts
+  }, [products.length]); // Depend on products length to handle dynamic number of products
 
   return (
-    <div className="relative w-[100%] h-[100%] max-w-lg mx-auto ">
-      {/* Images */}
-      {images.map((image, index) => (
+    <div className="relative w-full h-[400px] max-w-lg mx-auto">
+      {/* Render images dynamically from the products array */}
+      {products.map((product, index) => (
         <img
           key={index}
-          src={image}
-          alt={`Slide ${index + 1}`}
-          className={`absolute inset-0 w-full h-auto transition-opacity duration-1000 ${
+          src={product.image} // API image URL
+          alt={`Product ${index + 1}`} // Alt text for the image
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             index === currentIndex ? "opacity-100" : "opacity-0"
-          }`}
+          }`} // Ensure the image covers its container without stretching
         />
       ))}
 
-      {/* Indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-blue-600" : "bg-gray-400"
-            }`}
-            onClick={() => setCurrentIndex(index)}
-          />
-        ))}
-      </div>
+   
     </div>
   );
 };

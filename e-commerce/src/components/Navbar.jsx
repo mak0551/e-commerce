@@ -15,17 +15,15 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
-          <a href="#" className="text-gray-700 hover:text-gray-900">
+          <a href="/" className="text-gray-700 hover:text-gray-900">
             Home
           </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">
+          <a href="/Products" className="text-gray-700 hover:text-gray-900">
             Products
           </a>
+        
           <a href="#" className="text-gray-700 hover:text-gray-900">
-            About
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">
-            Contact
+            Whishlist
           </a>
           <a href="#" className="text-gray-700 hover:text-gray-900">
             Cart
@@ -55,12 +53,12 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-white shadow-md">
+          <div className="md:hidden absolute top-16 left-0 w-full z-50 bg-white shadow-md">
             <div className="flex flex-col items-center space-y-4 py-4">
-              <a href="#" className="text-gray-700 hover:text-gray-900">
+              <a href="/" className="text-gray-700 hover:text-gray-900">
                 Home
               </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">
+              <a href="/Products" className="text-gray-700 hover:text-gray-900">
                 Products
               </a>
               <a href="#" className="text-gray-700 hover:text-gray-900">
