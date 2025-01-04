@@ -32,7 +32,7 @@ const Hero = () => {
               href="#"
               className="ml-4 px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition"
             >
-              Learn More
+              Learn More!
             </a>
           </div>
         </div>
