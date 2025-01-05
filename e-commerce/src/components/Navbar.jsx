@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,19 +16,19 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
-          <a href="/" className="text-gray-700 hover:text-gray-900">
+          <Link to="/" className="text-gray-700 hover:text-gray-900">
             Home
-          </a>
-          <a href="/Products" className="text-gray-700 hover:text-gray-900">
+          </Link>
+          <Link to="/Products" className="text-gray-700 hover:text-gray-900">
             Products
-          </a>
+          </Link>
         
-          <a href="#" className="text-gray-700 hover:text-gray-900">
+          <Link to="#" className="text-gray-700 hover:text-gray-900">
             Whishlist
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">
+          </Link>
+          <Link to="#" className="text-gray-700 hover:text-gray-900">
             Cart
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}

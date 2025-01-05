@@ -1,15 +1,7 @@
 import React from "react";
 import HeroCarousel from "./HeroImg";
-import axios from "axios";
-
-
-
-
 
 const Hero = () => {
-
- 
-
   return (
     <section className="bg-gray-50 ">
       <div className="container mx-auto px-4 py-16 flex flex-col-reverse md:flex-row items-center">
@@ -19,7 +11,8 @@ const Hero = () => {
             Shop the Latest Trends
           </h1>
           <p className="mt-4 text-gray-600">
-            Discover the best deals on the newest arrivals. Upgrade your wardrobe today!
+            Discover the best deals on the newest arrivals. Upgrade your
+            wardrobe today!
           </p>
           <div className="mt-6">
             <a
@@ -39,7 +32,7 @@ const Hero = () => {
 
         {/* Image */}
         <div className="w-full h-[60vh] md:w-1/2 flex justify-center">
-          <HeroCarousel/>
+          <HeroCarousel />
         </div>
       </div>
     </section>
