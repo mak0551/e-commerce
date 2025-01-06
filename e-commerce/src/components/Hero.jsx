@@ -1,5 +1,6 @@
 import React from "react";
 import HeroCarousel from "./HeroImg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -15,12 +16,12 @@ const Hero = () => {
             wardrobe today!
           </p>
           <div className="mt-6">
-            <a
-              href="/Products"
+            <Link
+              to="/Products"
               className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
             >
               Shop Now!
-            </a>
+            </Link>
             <a
               href="#"
               className="ml-4 px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition"

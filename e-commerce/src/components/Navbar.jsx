@@ -22,7 +22,7 @@ const Navbar = () => {
           <Link to="/Products" className="text-gray-700 hover:text-gray-900">
             Products
           </Link>
-        
+
           <Link to="/wishlist" className="text-gray-700 hover:text-gray-900">
             Wishlist
           </Link>
@@ -56,21 +56,21 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden absolute top-16 left-0 w-full z-50 bg-white shadow-md">
             <div className="flex flex-col items-center space-y-4 py-4">
-              <a href="/" className="text-gray-700 hover:text-gray-900">
+              <Link to="/" className="text-gray-700 hover:text-gray-900">
                 Home
-              </a>
-              <a href="/Products" className="text-gray-700 hover:text-gray-900">
+              </Link>
+              <Link
+                to="/Products"
+                className="text-gray-700 hover:text-gray-900"
+              >
                 Products
-              </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">
-                About
-              </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">
-                Contact
-              </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">
+              </Link>
+              <Link to="wishlist" className="text-gray-700 hover:text-gray-900">
+                Wishlist
+              </Link>
+              <Link to="cart" className="text-gray-700 hover:text-gray-900">
                 Cart
-              </a>
+              </Link>
             </div>
           </div>
         )}
