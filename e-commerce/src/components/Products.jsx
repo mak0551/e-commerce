@@ -1,13 +1,12 @@
-
 import React, { useState, useEffect } from "react";
-import { useWishlist } from './WishlistProvider'
+import { useWishlist } from "./WishlistProvider";
 
 import axios from "axios"; // Axios for making API calls
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { wishlistItems, addToWishlist } = useWishlist();
+  const { wishlistItems, addToWishlist, removeFromWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -34,14 +33,25 @@ const Products = () => {
       <h1 className="text-2xl font-bold text-center my-6">Our Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <div key={product.id} className="relative bg-white rounded-lg shadow-md p-4 hover:shadow-xl transition-shadow">
+          <div
+            key={product.id}
+            className="relative bg-white rounded-lg shadow-md p-4 hover:shadow-xl transition-shadow"
+          >
             <button
               className="absolute top-4 right-4 cursor-pointer"
-              onClick={() => addToWishlist(product)}
+              onClick={() =>
+                wishlistItems.some((item) => item.id === product.id)
+                  ? removeFromWishlist(product.id)
+                  : addToWishlist(product)
+              }
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill={wishlistItems.some(item => item.id === product.id) ? "red" : "none"}
+                fill={
+                  wishlistItems.some((item) => item.id === product.id)
+                    ? "red"
+                    : "none"
+                }
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
@@ -59,7 +69,9 @@ const Products = () => {
               alt={product.title}
               className="w-full h-48 object-cover rounded-lg"
             />
-            <h2 className="text-lg font-medium mt-4 line-clamp-2">{product.title}</h2>
+            <h2 className="text-lg font-medium mt-4 line-clamp-2">
+              {product.title}
+            </h2>
             <p className="text-gray-500 mt-2">${product.price}</p>
             <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
               Add to Cart
@@ -71,4 +83,4 @@ const Products = () => {
   );
 };
 
-export default Products
+export default Products;

@@ -3,8 +3,9 @@ import axios from "axios"; // Import axios for API calls
 
 const HeroCarousel = () => {
   // State to store product data and the current image index for carousel
-  const [products, setProducts] = useState([]); 
+  const [products, setProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   // Fetch product data from the Fake Store API
   useEffect(() => {
@@ -13,6 +14,7 @@ const HeroCarousel = () => {
         // Fetching data from the Fake Store API
         const response = await axios.get("https://fakestoreapi.com/products");
         setProducts(response.data); // Set products data to state
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error); // Log any errors during API call
       }
@@ -33,7 +35,9 @@ const HeroCarousel = () => {
     return () => clearInterval(interval); // Cleanup the interval when component unmounts
   }, [products.length]); // Depend on products length to handle dynamic number of products
 
-  return (
+  return loading ? (
+    <div className="flex items-center justify-center font-semibold">Loading...</div>
+  ) : (
     <div className="relative w-full h-[400px] max-w-lg mx-auto">
       {/* Render images dynamically from the products array */}
       {products.map((product, index) => (
@@ -46,8 +50,6 @@ const HeroCarousel = () => {
           }`} // Ensure the image covers its container without stretching
         />
       ))}
-
-   
     </div>
   );
 };
