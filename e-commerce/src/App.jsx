@@ -5,20 +5,25 @@ import Hero from "./components/Hero";
 import Products from "./components/Products";
 import Wishlist from "./components/WIshlist";
 import { WishlistProvider } from "./components/WishlistProvider";
+import { CartProvider } from "./components/CardCOntext";
+import CartSummary from "./components/Cart";
 
 function App() {
   return (
     <WishlistProvider>
-      <Router>
-        <div>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Hero />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-          </Routes>
-        </div>
-      </Router>
+      <CartProvider>
+        <Router>
+          <div>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Hero />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/cart" element={<CartSummary/>}/>
+            </Routes>
+          </div>
+        </Router>
+      </CartProvider>
     </WishlistProvider>
   );
 }

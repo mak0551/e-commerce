@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useWishlist } from "./WishlistProvider";
-
+import { useCart } from "./CardCOntext"; // Import useCart
 import axios from "axios"; // Axios for making API calls
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { wishlistItems, addToWishlist, removeFromWishlist } = useWishlist();
+  const { cartItems, addToCart, removeFromCart } = useCart(); // Get cart context
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -69,11 +70,14 @@ const Products = () => {
               alt={product.title}
               className="w-full h-48 object-cover rounded-lg"
             />
-            <h2 className="text-lg font-medium mt-4 line-clamp-2">
-              {product.title}
-            </h2>
+            <h2 className="text-lg font-medium mt-4 line-clamp-2">{product.title}</h2>
             <p className="text-gray-500 mt-2">${product.price}</p>
-            <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+
+            {/* Add to Cart button */}
+            <button
+              onClick={() => addToCart(product)}
+              className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+            >
               Add to Cart
             </button>
           </div>

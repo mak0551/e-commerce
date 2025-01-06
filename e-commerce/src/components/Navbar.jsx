@@ -26,7 +26,7 @@ const Navbar = () => {
           <Link to="/wishlist" className="text-gray-700 hover:text-gray-900">
             Wishlist
           </Link>
-          <Link to="#" className="text-gray-700 hover:text-gray-900">
+          <Link to="cart" className="text-gray-700 hover:text-gray-900">
             Cart
           </Link>
         </div>
