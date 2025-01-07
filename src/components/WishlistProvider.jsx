@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, createContext, useContext } from "react";
 
 // Create and export the context
-export const WishlistContext = React.createContext();
+export const WishlistContext = createContext();
 
 // Custom hook for using wishlist context
 export const useWishlist = () => {
-  const context = React.useContext(WishlistContext);
+  const context = useContext(WishlistContext);
   if (!context) {
     throw new Error("useWishlist must be used within a WishlistProvider");
   }
@@ -18,7 +18,7 @@ export const WishlistProvider = ({ children }) => {
 
   const addToWishlist = (product) => {
     setWishlistItems((prev) => {
-      if (!prev.some(item => item.id === product.id)) {
+      if (!prev.some((item) => item.id === product.id)) {
         return [...prev, product];
       }
       return prev;
@@ -30,7 +30,9 @@ export const WishlistProvider = ({ children }) => {
   };
 
   return (
-    <WishlistContext.Provider value={{ wishlistItems, addToWishlist, removeFromWishlist }}>
+    <WishlistContext.Provider
+      value={{ wishlistItems, addToWishlist, removeFromWishlist }}
+    >
       {children}
     </WishlistContext.Provider>
   );
