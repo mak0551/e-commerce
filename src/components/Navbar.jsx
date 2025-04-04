@@ -52,7 +52,6 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden absolute top-16 left-0 w-full z-50 bg-white shadow-md">
             <div className="flex flex-col items-center space-y-4 py-4">

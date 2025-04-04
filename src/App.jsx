@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Router components
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Products from "./components/Products";
@@ -12,14 +12,14 @@ function App() {
   return (
     <WishlistProvider>
       <CartProvider>
-        <Router>
-          <div>
+        <Router basename="/">
+          <div className="min-h-screen bg-gray-50">
             <Navbar />
             <Routes>
               <Route path="/" element={<Hero />} />
               <Route path="/products" element={<Products />} />
               <Route path="/wishlist" element={<Wishlist />} />
-              <Route path="/cart" element={<CartSummary/>}/>
+              <Route path="/cart" element={<CartSummary />} />
             </Routes>
           </div>
         </Router>
