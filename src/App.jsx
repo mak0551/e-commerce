@@ -12,7 +12,7 @@ function App() {
   return (
     <WishlistProvider>
       <CartProvider>
-        <Router basename="/">
+        <Router>
           <div className="min-h-screen bg-gray-50">
             <Navbar />
             <Routes>
